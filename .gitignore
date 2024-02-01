@@ -70,6 +70,7 @@ build/
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/sonarlint/**
 
 # AWS User-specific
 .idea/**/aws.xml
@@ -142,3 +143,5 @@ fabric.properties
 .idea/misc.xml
 .idea/jpa-buddy.xml
 .idea/encodings.xml
+
+HELP.md
