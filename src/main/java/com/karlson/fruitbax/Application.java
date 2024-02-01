@@ -1,4 +1,4 @@
-package com.karlson.fruitBax;
+package com.karlson.fruitbax;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
