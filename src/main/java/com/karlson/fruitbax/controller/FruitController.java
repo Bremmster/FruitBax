@@ -1,6 +1,5 @@
 package com.karlson.fruitbax.controller;
 
-import com.karlson.fruitbax.entity.Fruit;
 import com.karlson.fruitbax.service.FruitService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
