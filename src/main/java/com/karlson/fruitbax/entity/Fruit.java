@@ -1,5 +1,6 @@
 package com.karlson.fruitbax.entity;
 
+import com.karlson.fruitbax.model.FruitDTO;
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
@@ -16,13 +17,14 @@ public class Fruit {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    public Fruit(String name) {
-        this.name = name;
+    public Fruit(FruitDTO fruitDTO) {
+        // make first char uppercase and the rest lowercase
+        String formattedName = fruitDTO.name().toLowerCase();
+        this.name = formattedName.substring(0, 1).toUpperCase() + formattedName.substring(1);
     }
 
     public Fruit() {
     }
-
 
     public Long getId() {
         return id;

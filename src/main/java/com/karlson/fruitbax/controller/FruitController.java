@@ -32,4 +32,10 @@ public class FruitController {
         return fruit == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(fruit);
     }
 
+    @PostMapping("")
+    public ResponseEntity<FruitDTO> createFruit(@RequestBody FruitDTO newFruit) {
+
+        FruitDTO fruit = fruitService.addFruit(newFruit);
+        return fruit == null ? ResponseEntity.badRequest().build() : ResponseEntity.ok(fruit);
+    }
 }
