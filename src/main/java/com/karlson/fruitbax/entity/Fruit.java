@@ -16,8 +16,7 @@ public class Fruit {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    public Fruit(Long id, String name) {
-        this.id = id;
+    public Fruit(String name) {
         this.name = name;
     }
 
