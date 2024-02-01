@@ -19,7 +19,6 @@ public class FruitController {
 
     @GetMapping("")
     public ResponseEntity<List<FruitDTO>> getAll() {
-
         List<FruitDTO> fruits = fruitService.findAll();
 
         return fruits.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(fruits);
@@ -34,8 +33,8 @@ public class FruitController {
 
     @PostMapping("")
     public ResponseEntity<FruitDTO> createFruit(@RequestBody FruitDTO newFruit) {
-
         FruitDTO fruit = fruitService.addFruit(newFruit);
+
         return fruit == null ? ResponseEntity.badRequest().build() : ResponseEntity.ok(fruit);
     }
 }

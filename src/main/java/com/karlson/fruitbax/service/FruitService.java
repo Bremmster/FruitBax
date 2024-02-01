@@ -28,8 +28,6 @@ public class FruitService {
 
     public FruitDTO addFruit(FruitDTO newFruit) throws IllegalArgumentException {
 
-        Fruit fruit = fruitRepository.save(new Fruit(newFruit));
-
-        return new FruitDTO(fruit.getName());
+        return new FruitDTO(fruitRepository.save(new Fruit(newFruit)).getName());
     }
 }
