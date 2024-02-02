@@ -18,9 +18,7 @@ public class Fruit {
     private String name;
 
     public Fruit(FruitDTO fruitDTO) {
-        // make first char uppercase and the rest lowercase
-        String formattedName = fruitDTO.name().toLowerCase();
-        this.name = formattedName.substring(0, 1).toUpperCase() + formattedName.substring(1);
+        this.name = formatName(fruitDTO.name());
     }
 
     public Fruit() {
@@ -39,6 +37,12 @@ public class Fruit {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = formatName(name);
+    }
+
+    public String formatName(String name) {
+        // make first char uppercase and the rest lowercase
+        String formattedName = name.toLowerCase();
+        return formattedName.substring(0, 1).toUpperCase() + formattedName.substring(1);
     }
 }

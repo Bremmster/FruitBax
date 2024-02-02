@@ -2,6 +2,7 @@ package com.karlson.fruitbax.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.karlson.fruitbax.model.FruitDTO;
+import com.karlson.fruitbax.model.UpdateFruitDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -9,8 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -75,7 +75,7 @@ class FruitControllerTest {
 
     @Test
     void failPostCreateOneFruitWithBadFruit() throws Exception {
-        var payload = "Pineapple";
+        var payload = "Pinecone";
 
         this.mvc.perform(post(API)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -83,4 +83,62 @@ class FruitControllerTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
     }
+
+    @Test
+    void putOneValidFruit() throws Exception {
+        String newName = "Strawberry";
+        var payload = new UpdateFruitDTO("Banana", newName);
+
+        this.mvc.perform(put(API)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(payload))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value(newName));
+    }
+
+    @Test
+    void putOneValidFruitThatExistsMakeSureCaseIsCorrect() throws Exception {
+        String newName = "mellon";
+        String expected = "Mellon";
+        var payload = new UpdateFruitDTO("Cherry", newName);
+
+        this.mvc.perform(put(API)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(payload))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value(expected));
+    }
+
+    @Test
+    void putOneFruitThatAlreadyExistsShouldFail() throws Exception {
+        // Test try to replace the formatName with one fruit that already exists.
+        String newName = "Etrog";
+
+        var payload = new UpdateFruitDTO("Durian", newName);
+
+        this.mvc.perform(put(API)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(payload))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void putOneFruitThatAlreadyExistsIgnoreCaseShouldFail() throws Exception {
+        /* This test try to replace the formatName with one fruit that already exists.
+            Make sure the case is ignored of the new fruit and old fruit. */
+
+        String newName = "apple";
+
+        var payload = new UpdateFruitDTO("Figs", newName);
+
+        this.mvc.perform(put(API)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(payload))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
 }
