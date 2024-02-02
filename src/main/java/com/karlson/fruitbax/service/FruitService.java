@@ -50,4 +50,16 @@ public class FruitService {
         return fruitRepository.findByNameIgnoreCase(updateFruit.newName()).map(value -> new FruitDTO(value.getName())).orElse(null);
 
     }
+
+    @Transactional
+    public boolean deleteFruit(FruitDTO deleteFruit) throws IllegalArgumentException {
+
+        Optional<Fruit> target = fruitRepository.findByNameIgnoreCase(deleteFruit.name());
+
+        if (target.isPresent()) {
+            fruitRepository.delete(target.get());
+            return true;
+        }
+        return false;
+    }
 }

@@ -4,3 +4,4 @@ INSERT INTO fruit (name) VALUES ('Cherry');
 INSERT INTO fruit (name) VALUES ('Durian');
 INSERT INTO fruit (name) VALUES ('Etrog');
 INSERT INTO fruit (name) VALUES ('Figs');
+INSERT INTO fruit (name) VALUES ('Huckleberry');

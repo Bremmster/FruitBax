@@ -4,7 +4,6 @@ import com.karlson.fruitbax.model.FruitDTO;
 import com.karlson.fruitbax.model.UpdateFruitDTO;
 import com.karlson.fruitbax.service.FruitService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,5 +45,13 @@ public class FruitController {
         FruitDTO fruit = fruitService.updateFruit(updateFruit);
 
         return fruit == null ? ResponseEntity.badRequest().body("The fruit you want to replace does not exist or the new fruit already exists") : ResponseEntity.ok(fruit);
+    }
+
+    @DeleteMapping("")
+    public ResponseEntity<?> deleteFruit(@RequestBody FruitDTO deleteFruit) {
+
+        boolean res = fruitService.deleteFruit(deleteFruit);
+
+        return res ? ResponseEntity.noContent().build() :  ResponseEntity.notFound().build();
     }
 }

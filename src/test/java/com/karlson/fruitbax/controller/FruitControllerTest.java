@@ -141,4 +141,23 @@ class FruitControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    @Test
+    void deleteOneFruitThatExists() throws Exception {
+        var payload = new FruitDTO("huckleberry");
+        this.mvc.perform(delete(API)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(payload))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
+    }
+    @Test
+    void deleteOneFruitThatDoesNotExists() throws Exception {
+        var payload = new FruitDTO("Unicorn");
+        this.mvc.perform(delete(API)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(payload))
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
 }

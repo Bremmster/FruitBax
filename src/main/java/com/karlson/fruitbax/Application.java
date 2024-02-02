@@ -11,12 +11,4 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
-
-    @Bean
-    CommandLineRunner commandLineRunner() { // todo remove or add content
-        return args -> {
-            System.out.println("Hello World!");
-        };
-    }
-
 }
