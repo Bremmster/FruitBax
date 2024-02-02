@@ -27,6 +27,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
+          cache : 'maven3'
       - run: mvn --batch-mode --update-snapshots verify
       - run: mkdir staging && cp target/*.jar staging
       - uses: actions/upload-artifact@v4
