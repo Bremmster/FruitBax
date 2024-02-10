@@ -1,6 +1,14 @@
 name: main
 
-on: push
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+    branches:
+      - dev
+    branches-ignore:
+      - main
 
 jobs:
   build:
