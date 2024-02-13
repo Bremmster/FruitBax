@@ -40,18 +40,18 @@ public class FruitController {
     }
 
     @PutMapping("")
-    public ResponseEntity<?> updateFruit(@RequestBody UpdateFruitDTO updateFruit) {
+    public ResponseEntity<FruitDTO> updateFruit(@RequestBody UpdateFruitDTO updateFruit) {
 
         FruitDTO fruit = fruitService.updateFruit(updateFruit);
 
-        return fruit == null ? ResponseEntity.badRequest().body("The fruit you want to replace does not exist or the new fruit already exists") : ResponseEntity.ok(fruit);
+        return fruit == null ? ResponseEntity.badRequest().build() : ResponseEntity.ok(fruit);
     }
 
     @DeleteMapping("")
-    public ResponseEntity<?> deleteFruit(@RequestBody FruitDTO deleteFruit) {
+    public ResponseEntity<String> deleteFruit(@RequestBody FruitDTO deleteFruit) {
 
-        boolean res = fruitService.deleteFruit(deleteFruit);
+        boolean result = fruitService.deleteFruit(deleteFruit);
 
-        return res ? ResponseEntity.noContent().build() :  ResponseEntity.notFound().build();
+        return result ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build();
     }
 }
