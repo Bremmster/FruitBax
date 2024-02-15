@@ -2,12 +2,9 @@
 Java 21, Spring boot 3.2.2, CRUD restAPI with CI/CD and deployed on AWS.  
 Made to meet the MVP for VG in uppgiftsbeskrivning.pdf
 
-
-
 ## TLDR; Purpose of the assignment
 Create a Java Spring boot rest API with crud functionality use CI/CD pipelines to deploy the application to AWS EC2.
 For learning purposes, the repository should also use GitHub Actions for testing and packaging.
-
 
 ## Developer comments
 
@@ -31,7 +28,6 @@ Things to note in the .yml files.
 - All tests are running the 'Test' profile.
 - In the AWS pipeline, no tests are running to save time.
 
-
 ## Database
 To the EC2 instance is an AWS RDS connected running a mySQL database.
 AWS predefined environment variables are used to hide the connection information from the repository.
@@ -46,7 +42,6 @@ The Ping Controller is a simple controller used to check if the application is r
    - Description: Checks if the application is running.
    - Response: A string message "pong"
    - Status Codes: `200 OK` if the application is running.
-
 
 ## Fruit endpoints
 
