@@ -75,3 +75,19 @@ Crud on a database with fruits
     - Request Body: A `FruitDTO` object containing the name of the fruit to be deleted.
     - Response: No content.
     - Status Codes: `204 No Content` if the fruit is successfully deleted, `404 Not Found` if the fruit is not found.
+
+### Objects used Fruit endpoint
+
+Fruit
+```
+{
+"name": "Apple"
+}
+```
+UpdateFruitDTO
+```
+{
+"name": "Apple",
+"newName": "Banana"
+}
+```
