@@ -1,6 +1,6 @@
 # FruitBax
-Java Spring boot CRUD restAPI with CI/CD and deployed on AWS
-Made to meet the requirements in uppgiftsbeskrivning.pdf
+Java 21, Spring boot 3.2.2, CRUD restAPI with CI/CD and deployed on AWS.  
+Made to meet the MVP for VG in uppgiftsbeskrivning.pdf
 
 ## TLDR; Purpose of the assignment
 Create a Java Spring boot rest API with crud functionality use CI/CD pipelines to deploy the application to AWS EC2.
@@ -10,18 +10,32 @@ The client application is in a different repository.
 
 ## Description of CI/CD pipeline
 
-the default brach in the GitHub repository is 'dev' 
+The default branch in the GitHub repository is 'dev'
+all pushes and pulls to the branch runs Actions in ```.github/workflows/dev.yml```
+Pulls to 'main' branch runs Actions in ```.github/workflows/main.yml```
 
+AWS ElasticBeanstalk uses a webhook to the 'main' branch
+that triggers AWS CodePipeline and CodeBuild and deployment to an EC2 instance on eu-north-1  
+The ```Buildspec.yml``` contains the information about the build process.
+
+Things to note in the .yml files.   
+- All tests are running the 'Test' profile.
+- In the AWS pipeline, no tests are running to save time.
+
+
+## Database
+To the EC2 instance is an AWS RDS connected running a mySQL database.
+AWS predefined environment variables are used to hide the connection information from the repository.
 
 # API endpoints
 
-## Ping endpoints
+## Ping endpoint
 
 The Ping Controller is a simple controller used to check if the application is running. It has a single endpoint.
 
 1. `GET /ping`
    - Description: Checks if the application is running.
-   - Response: A string message "pong".
+   - Response: A string message "pong"
    - Status Codes: `200 OK` if the application is running.
 
 
