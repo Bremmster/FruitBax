@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 class PingControllerTest {
 
-    private final String API = "/ping";
+    private final String API = "/";
     @Autowired
     private MockMvc mvc;
 
