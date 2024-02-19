@@ -2,15 +2,16 @@
 Java 21, Spring boot 3.2.2, CRUD restAPI with CI/CD and deployed on AWS.  
 Made to meet the MVP for VG in uppgiftsbeskrivning.pdf
 
-## TLDR; Purpose of the assignment
+## TL;DR Purpose of the assignment
 Create a Java Spring boot rest API with crud functionality use CI/CD pipelines to deploy the application to AWS EC2.
 For learning purposes, the repository should also use GitHub Actions for testing and packaging.
 
 ## Developer comments
 
-My solution had two important criteria.
+My solution had three important criteria.
 - Test-driven development where the tests come first.
 - The database should be completely invisible to the user of the API, no IDs should be visible.
+- Exploring multiple profiles 
 
 The client application is in a different repository.
 
