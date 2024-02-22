@@ -11,6 +11,6 @@ public class PingController {
 
     @GetMapping("")
     public ResponseEntity<String> pingPong() {
-        return ResponseEntity.ok("Hello World!");
+        return ResponseEntity.ok("Never retire, stare and admire, my drip don’t expire");
     }
 }
