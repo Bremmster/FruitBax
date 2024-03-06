@@ -31,7 +31,7 @@ Things to note in the .yml files.
 
 ## Database
 To the EC2 instance is an AWS RDS connected running a mySQL database.
-AWS predefined environment variables are used to hide the connection information from the repository.
+~~AWS predefined environment variables are used to hide the connection information from the repository.~~
 
 # API endpoints
 
